@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <PopulationSize>500</PopulationSize>
+  <SpecieCount>10</SpecieCount>
+  <Activation>
+    <Scheme>CyclicFixedIters</Scheme>
+	<Iters>1</Iters>
+  </Activation>
+  <ComplexityRegulationStrategy>Absolute</ComplexityRegulationStrategy>
+  <ComplexityThreshold>10</ComplexityThreshold>
+  <Description>
+    This is trading muthafucka
+  </Description>
+</Config>

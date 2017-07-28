@@ -66,6 +66,14 @@ namespace SharpNeat.EvolutionAlgorithms
         /// Notifies listeners that the algorithm has paused.
         /// </summary>
         public event EventHandler PausedEvent;
+        /// <summary>
+        /// Notifies listeners when a new generation is about to begin.
+        /// </summary>
+        public event EventHandler NextGenerationEvent;
+        /// <summary>
+        /// Notifies listeners when a new generation just finished.
+        /// </summary>
+        public event EventHandler GenerationFinishedEvent;
 
         #endregion
 
@@ -261,7 +269,9 @@ namespace SharpNeat.EvolutionAlgorithms
                 for(;;)
                 {
                     _currentGeneration++;
+                    OnNextGenerationEvent();
                     PerformOneGeneration();
+                    OnGenerationFinishedEvent();
 
                     if(UpdateTest())
                     {
@@ -322,6 +332,31 @@ namespace SharpNeat.EvolutionAlgorithms
                 catch(Exception ex) {
                     __log.Error("UpdateEvent listener threw exception", ex);
                 }
+            }
+        }
+
+        private void OnNextGenerationEvent()
+        {
+            // Catch exceptions thrown by even listeners. This prevents listener exceptions from terminating the algorithm thread.
+            try
+            {
+                NextGenerationEvent(this, EventArgs.Empty);
+            }
+            catch(Exception ex) {
+                __log.Error("OnNextGenerationEvent listener threw exception", ex);
+            }
+        }
+
+        private void OnGenerationFinishedEvent()
+        {
+            // Catch exceptions thrown by even listeners. This prevents listener exceptions from terminating the algorithm thread.
+            try
+            {
+                GenerationFinishedEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                __log.Error("OnGenerationFinishedEvent listener threw exception", ex);
             }
         }
 

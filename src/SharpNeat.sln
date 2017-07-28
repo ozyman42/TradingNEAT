@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpNeatLib", "SharpNeatLib\SharpNeatLib.csproj", "{ABC5C77A-DEBA-420C-926C-BD3E6F37AE15}"
 EndProject
@@ -17,6 +17,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpNeatDomainsExtra", "SharpNeatDomainsExtra\SharpNeatDomainsExtra.csproj", "{3A1B9DEC-AECE-42F3-BAD9-9172482C43AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficacySampler", "EfficacySampler\EfficacySampler.csproj", "{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingNEAT", "TradingNEAT\TradingNEAT.csproj", "{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingNEATServer", "TradingNEATServer\TradingNEATServer.csproj", "{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +114,30 @@ Global
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|x86.ActiveCfg = Release|Any CPU
 		{AC4EDED1-7BCE-4DA2-BCFA-1532F6238F40}.Release|x86.Build.0 = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B075710-4DF7-4DA0-A8DD-E05AEFF9D6D6}.Release|x86.Build.0 = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB2DAEA2-C2E4-4E4A-8F8D-ECE5C77E834D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
