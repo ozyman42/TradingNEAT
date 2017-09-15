@@ -100,7 +100,7 @@ namespace TradingNEATServer
             Console.Write("Loading data set... ");
             // A piece of data looks like the following.
             // {"date":1482565500,"high":7.22192054,"low":7.22192054,"open":7.22192054,"close":7.22192054,"volume":0,"quoteVolume":0,"weightedAverage":7.22192054}
-            JArray dataArray = JArray.Parse(File.ReadAllText("../../eth_esdt_poloniex.json"));
+            JArray dataArray = JArray.Parse(File.ReadAllText(TrainingSession.CONFIG_FILE_PATH + "eth_esdt_poloniex.json"));
             allData = new TimeStepDataPiece[dataArray.Count];
             int[] cciRanges = new int[]{2, 5, 10, 20, 50, 100, 200, 500, 1000 };
             MovingAverageTracker[] movingAverageTrackers = new MovingAverageTracker[cciRanges.Length];

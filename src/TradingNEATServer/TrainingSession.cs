@@ -13,6 +13,8 @@ namespace TradingNEATServer
 {
     public class TrainingSession
     {
+        public static readonly string CONFIG_FILE_PATH = @"C:\Users\alexl\OneDrive\Career\TradingTools\neat-trader\";
+
         private static TrainingSession instance;
 
         public static TrainingSession Instance
@@ -42,7 +44,7 @@ namespace TradingNEATServer
 
             // Load config XML.
             XmlDocument xmlConfig = new XmlDocument();
-            xmlConfig.Load("../../trading.config.xml");
+            xmlConfig.Load(CONFIG_FILE_PATH + "trading.config.xml");
             this.experiment.Initialize("Trading", xmlConfig.DocumentElement);
         }
 

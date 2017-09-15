@@ -27,6 +27,7 @@ namespace TradingNEATServer
             //this.name = this.WebSocketContext.QueryString["name"];
             this.ownClient.Add(this);
             clients.Add(this);
+            this.ownClient.Broadcast("{\"type\":\"connect\",\"data\":{\"hello\":\"world\"}}");
         }
 
         public override void OnMessage(string message)
@@ -42,19 +43,15 @@ namespace TradingNEATServer
                         case "status":
                             response = "";
                             break;
-                        case "load":
-                            response = session.loadPopulationFromFile("");
-                            break;
-                        case "start":
+                        case "load-start":
+                            session.loadPopulationFromFile("");
                             response = session.startTraining();
                             break;
-                        case "pause":
+                        case "pause-log":
                             response = session.pause();
-                            break;
-                        case "export":
                             response = session.export();
                             break;
-                        case "reset":
+                        case "finish":
                             response = session.reset();
                             break;
                         default:
@@ -72,7 +69,7 @@ namespace TradingNEATServer
         public override void OnClose()
         {
             clients.Remove(this);
-            clients.Broadcast(string.Format("{0} has gone away.", name));
+            //clients.Broadcast(string.Format("{0} has gone away.", name));
         }
 
         public static void HandleGenerationCompletion()
