@@ -43,6 +43,18 @@ namespace TradingNEATServer
             columns["name"] = "TEXT";
             this.createTable("fitness_functions", columns, new string[] { });
 
+            Dictionary<string, DBValue> insertData = new Dictionary<string, DBValue>();
+            insertData["name"] = new DBValue("percent_gains");
+            this.insertIntoTable("fitness_functions", insertData);
+
+            insertData = new Dictionary<string, DBValue>();
+            insertData["name"] = new DBValue("percent_of_optimal_percent_gains");
+            this.insertIntoTable("fitness_functions", insertData);
+
+            insertData = new Dictionary<string, DBValue>();
+            insertData["name"] = new DBValue("normalized_range_from_most_losses_to_most_gains");
+            this.insertIntoTable("fitness_functions", insertData);
+
             // training_sessions
             columns = new Dictionary<string, string>();
             columns["paused_at"] = "INTEGER";
@@ -136,14 +148,37 @@ namespace TradingNEATServer
             if (command.ExecuteNonQuery() != 1) throw new Exception("INSERT INTO command apparently failed.");
         }
 
-        public void updateTableWhere(string table, List<WhereClause> wheres, Dictionary<string, DBValue> data)
+        public int updateTableWhere(string table, List<WhereClause> wheres, Dictionary<string, DBValue> data)
         {
-            // string 
+            string[] dataUpdatePairs = new string[data.Count + 1];
+            int i = 0;
+            foreach(KeyValuePair<string, DBValue> pair in data)
+            {
+                dataUpdatePairs[i++] = pair.Key + " = " + pair.Value.ToString();
+            }
+            dataUpdatePairs[i] = "updated_at = strftime('%s', 'now')";
+            string whereClause = "";
+            if(wheres.Count > 0)
+            {
+                whereClause += " WHERE ";
+                string[] whereStrings = new string[wheres.Count];
+                i = 0;
+                foreach(WhereClause clause in wheres)
+                {
+                    whereStrings[i++] = clause.ToString();
+                }
+                string wheresString = string.Join(" ", whereStrings);
+                whereClause += wheresString.Substring(wheresString.IndexOf(" ") + 1);
+            }
+            string sql = $"UPDATE {table} SET {string.Join(", ", dataUpdatePairs)}{whereClause}";
+            SQLiteCommand command = new SQLiteCommand(sql, this.connection);
+            return command.ExecuteNonQuery();
         }
 
-        public void deleteFromTableWhere(string table )
+        public SQLiteDataReader select(string sql)
         {
-
+            SQLiteCommand command = new SQLiteCommand(sql, this.connection);
+            return command.ExecuteReader();
         }
 
         public class WhereClause
@@ -152,12 +187,14 @@ namespace TradingNEATServer
             private string column;
             private ComparisonSymbol comparisonSymbol;
             private DBValue value;
+            private bool and;
 
-            public WhereClause(string column, ComparisonSymbol comparisonSymbol, DBValue value)
+            public WhereClause(string column, ComparisonSymbol comparisonSymbol, DBValue value, bool and)
             {
                 this.column = column;
                 this.comparisonSymbol = comparisonSymbol;
                 this.value = value;
+                this.and = and;
             }
 
             public override string ToString()
@@ -166,7 +203,7 @@ namespace TradingNEATServer
                 switch(this.comparisonSymbol)
                 {
                     case ComparisonSymbol.EQ:
-                        comparisonSymbolString = "==";
+                        comparisonSymbolString = "=";
                         break;
                     case ComparisonSymbol.GT:
                         comparisonSymbolString = ">";
@@ -180,10 +217,11 @@ namespace TradingNEATServer
                     case ComparisonSymbol.LTE:
                         comparisonSymbolString = "<=";
                         break;
-                    case default:
+                    default:
                         throw new Exception("this.comparisonSymbol took on an invalid value");
                 }
-                return $"WHERE {column} {comparisonSymbolString} {value.ToString()}";
+                string and_or = and ? "AND" : "OR";
+                return $"{and_or} {column} {comparisonSymbolString} {value.ToString()}";
             }
         }
 

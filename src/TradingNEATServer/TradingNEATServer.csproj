@@ -114,7 +114,6 @@
     <Compile Include="TradingExperiment.cs" />
     <Compile Include="TrainingSession.cs" />
     <Compile Include="TrainingSocketHandler.cs" />
-    <Compile Include="Utils\Union3.cs" />
     <Compile Include="ws.ashx.cs">
       <DependentUpon>ws.ashx</DependentUpon>
     </Compile>
