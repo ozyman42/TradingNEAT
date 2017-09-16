@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using Newtonsoft.Json;
 
 using Microsoft.Web.WebSockets;
@@ -13,6 +10,7 @@ namespace TradingNEATServer
     {
         private static TrainingSession session = TrainingSession.Instance;
         private static WebSocketCollection clients = new WebSocketCollection();
+        private static StorageLayer storage = StorageLayer.Instance;
 
         private WebSocketCollection ownClient;
         //private string name;
@@ -20,6 +18,11 @@ namespace TradingNEATServer
         public TrainingWebSocketHandler()
         {
             this.ownClient = new WebSocketCollection();
+            Dictionary<string, StorageLayer.DBValue> insertData = new Dictionary<string, StorageLayer.DBValue>();
+            insertData["base_currency"] = new StorageLayer.DBValue("USD");
+            insertData["target_currency"] = new StorageLayer.DBValue("BTC");
+            insertData["seconds_between_each_data_point"] = new StorageLayer.DBValue(15);
+            storage.insertIntoTable("data_sets", insertData);
         }
 
         public override void OnOpen()
